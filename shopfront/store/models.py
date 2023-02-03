@@ -56,6 +56,7 @@ class Customer(models.Model):
         indexes = [
             models.Index(fields=['last_name', 'first_name'])
         ]
+        ordering = ['first_name']
 
 
 class Order(models.Model):
