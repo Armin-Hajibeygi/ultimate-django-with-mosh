@@ -12,6 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'membership']
     list_editable = ['membership']
+    list_per_page = 10
 
 
 admin.site.register(models.Collection)
