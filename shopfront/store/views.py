@@ -7,11 +7,16 @@ from .models import Product
 from .serializers import ProductSerializer
 
 
-@api_view()
+@api_view(['GET', 'POST'])
 def product_list(request):
-    queryset = Product.objects.select_related('collection').all()
-    serializer = ProductSerializer(queryset, many=True, context={'request': request})
-    return Response(serializer.data)
+    if request.method == 'GET':
+        queryset = Product.objects.select_related('collection').all()
+        serializer = ProductSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = ProductSerializer(data=request.data)
+        return Response('OK')
+        #serializer.validated_data
 
 
 @api_view()
